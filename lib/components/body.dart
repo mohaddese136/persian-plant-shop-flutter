@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:testapp/constants.dart';
 
 class Body extends StatelessWidget {
@@ -26,6 +27,7 @@ class Body extends StatelessWidget {
                   left: 0,
                   right: 0,
                   child: Container(
+                    alignment: Alignment.center,
                     height: 54,
                     margin: EdgeInsets.symmetric(horizontal: kDefaultPadding),
                     padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
@@ -39,11 +41,26 @@ class Body extends StatelessWidget {
                             color: kPrimaryColor.withOpacity(0.23),
                           )
                         ]),
-                    child: TextField(
-                      decoration: InputDecoration(
-                          hintText: "جستجو",
-                          hintStyle:
-                              TextStyle(color: kPrimaryColor.withOpacity(0.5))),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: TextField(
+                            onChanged: (value) {},
+                            decoration: InputDecoration(
+                              hintText: "جستجو",
+                              hintStyle: TextStyle(
+                                  color: kPrimaryColor.withOpacity(0.5)),
+                              enabledBorder: InputBorder.none,
+                              focusedBorder: InputBorder.none,
+                              // suffix dos not work properly with TextField thats
+                              // why we use Row.
+                              // suffixIcon:
+                              //     SvgPicture.asset("assets/icons/search.svg")
+                            ),
+                          ),
+                        ),
+                        SvgPicture.asset("assets/icons/search.svg")
+                      ],
                     ),
                   ))
             ],

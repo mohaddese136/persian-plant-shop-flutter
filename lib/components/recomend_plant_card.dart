@@ -54,7 +54,7 @@ class RecomendPlantCard extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Container(
       margin: EdgeInsets.only(
-          left: kDefaultPadding,
+          right: kDefaultPadding,
           top: kDefaultPadding / 2,
           bottom: kDefaultPadding * 2.5),
       //it will cover only 40% of out total width

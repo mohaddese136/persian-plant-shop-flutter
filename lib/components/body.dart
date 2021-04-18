@@ -4,6 +4,8 @@ import 'package:testapp/components/recomend_plant_card.dart';
 import 'package:testapp/components/title_with_more_btn.dart';
 import 'package:testapp/constants.dart';
 
+import 'featured_plants.dart';
+
 class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -18,7 +20,15 @@ class Body extends StatelessWidget {
             title: "محصولات پیشنهادی",
             press: () {},
           ),
-          RecomendsPlants()
+          RecomendsPlants(),
+          TitleWithMoreBtn(
+            title: "محصولات شگفت‌انگیز",
+            press: () {},
+          ),
+          FeatiredPlants(),
+          SizedBox(
+            height: kDefaultPadding,
+          )
         ],
       ),
     );

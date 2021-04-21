@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:testapp/components/featured_plants.dart';
 import 'package:testapp/components/recomend_plant_card.dart';
 import 'package:testapp/components/title_with_more_btn.dart';
 import 'package:testapp/constants.dart';
-
-import 'featured_plants.dart';
 
 class Body extends StatelessWidget {
   @override

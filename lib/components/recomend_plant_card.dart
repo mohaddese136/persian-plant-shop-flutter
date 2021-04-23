@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:testapp/components/featured_plants.dart';
 import 'package:testapp/screens/details/details_screen.dart';
+import 'package:testapp/services/plant.dart';
 import '../constants.dart';
 
 class RecomendsPlants extends StatelessWidget {
@@ -9,39 +11,44 @@ class RecomendsPlants extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Row(
-        children: [
-          RecomendPlantCard(
-              image: "assets/images/image_1.png",
-              title: "سمنتا",
-              country: "روسی",
-              price: "۳۰۰۰۰۰",
-              press: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => DetailsScreen()));
-              }),
-          RecomendPlantCard(
-              image: "assets/images/image_2.png",
-              title: "سمنتا",
-              country: "روسی",
-              price: "۳۰۰۰۰۰",
-              press: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => DetailsScreen()));
-              }),
-          RecomendPlantCard(
-              image: "assets/images/image_3.png",
-              title: "سمنتا",
-              country: "روسی",
-              price: "۳۰۰۰۰۰",
-              press: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => DetailsScreen()));
-              }),
-        ],
-      ),
+    List<Plant> plants = [
+      Plant(
+          title: "بنیسا",
+          country: "روسیه",
+          price: 300000,
+          image: "assets/images/image_1.png"),
+      Plant(
+          title: "سمنتا",
+          country: "ایران",
+          price: 500000,
+          image: "assets/images/image_2.png"),
+      Plant(
+          title: "روزا",
+          country: "هلند",
+          price: 900000,
+          image: "assets/images/image_3.png")
+    ];
+    return SizedBox(
+      height: 318,
+      child: ListView.builder(
+          shrinkWrap: true,
+          scrollDirection: Axis.horizontal,
+          itemCount: plants.length,
+          itemBuilder: (context, index) {
+            return RecomendPlantCard(
+                image: plants[index].image,
+                title: plants[index].title,
+                country: plants[index].country,
+                price: plants[index].price,
+                press: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => DetailsScreen(
+                                plant: plants[index],
+                              )));
+                });
+          }),
     );
   }
 }
@@ -56,7 +63,8 @@ class RecomendPlantCard extends StatelessWidget {
     this.press,
   }) : super(key: key);
 
-  final String image, title, country, price;
+  final String image, title, country;
+  final int price;
   final Function press;
 
   @override

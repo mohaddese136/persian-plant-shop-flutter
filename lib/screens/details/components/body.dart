@@ -1,58 +1,63 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:testapp/constants.dart';
+import 'package:testapp/services/plant.dart';
+import 'icon_card.dart';
+import 'image_and_icons.dart';
+import 'title_and_pricing.dart';
 
 class Body extends StatelessWidget {
+  final Plant plant;
+  const Body({Key key, @required this.plant}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Column(
-      children: [
-        SizedBox(
-          height: size.height * 0.8,
-          child: Row(
-            children: [
-              Expanded(
-                  child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: kDefaultPadding * 3),
-                child: Column(
-                  children: [
-                    Align(
-                      alignment: Alignment.topRight,
-                      child: IconButton(
-                          padding:
-                              EdgeInsets.symmetric(horizontal: kDefaultPadding),
-                          icon: SvgPicture.asset("assets/icons/back_arrow.svg"),
-                          onPressed: () {
-                            Navigator.pop(context);
-                          }),
-                    )
-                  ],
-                ),
-              )),
-              Container(
-                height: size.height * 0.8,
-                width: size.width * 0.75,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(63),
-                        bottomRight: Radius.circular(63)),
-                    boxShadow: [
-                      BoxShadow(
-                          offset: Offset(0, 10),
-                          blurRadius: 60,
-                          color: kPrimaryColor.withOpacity(0.29))
-                    ],
-                    image: DecorationImage(
-                        alignment: Alignment.centerLeft,
-                        fit: BoxFit.cover,
-                        image: AssetImage("assets/images/img.png"))),
-              )
-            ],
+
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          ImageAndIcons(
+            image: plant.image,
           ),
-        )
-      ],
+          TitleAndPricing(
+            title: plant.title,
+            country: plant.country,
+            price: plant.price,
+          ),
+          SizedBox(
+            height: kDefaultPadding,
+          ),
+          Row(
+            children: [
+              SizedBox(
+                width: size.width / 2,
+                height: 84,
+                child: TextButton(
+                  onPressed: () {},
+                  child: Text(
+                    "خرید",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  style: TextButton.styleFrom(
+                      backgroundColor: kPrimaryColor,
+                      shape: RoundedRectangleBorder(
+                          borderRadius:
+                              BorderRadius.only(topLeft: Radius.circular(20)))),
+                ),
+              ),
+              Expanded(
+                  child: TextButton(
+                onPressed: () {},
+                child: Text(
+                  "توضیحات",
+                  style: TextStyle(color: Colors.black),
+                ),
+              ))
+            ],
+          )
+        ],
+      ),
     );
   }
 }

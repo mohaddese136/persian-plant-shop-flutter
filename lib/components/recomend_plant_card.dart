@@ -71,7 +71,7 @@ class RecomendPlantCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    String priceText = PersianNumbers(price.toString()).replace();
+    String priceText = PersianNumbers(price).replace();
     return Container(
       margin: EdgeInsets.only(
           right: kDefaultPadding,
@@ -104,11 +104,13 @@ class RecomendPlantCard extends StatelessWidget {
                     text: TextSpan(children: [
                       TextSpan(
                           text: "$title\n",
-                          style: Theme.of(context).textTheme.button),
+                          style: TextStyle(
+                              color: Colors.black, fontFamily: 'Vazir')),
                       TextSpan(
                           text: "$country",
-                          style:
-                              TextStyle(color: kPrimaryColor.withOpacity(0.5)))
+                          style: TextStyle(
+                              color: kPrimaryColor.withOpacity(0.5),
+                              fontFamily: 'Vazir'))
                     ]),
                   ),
                   Spacer(),

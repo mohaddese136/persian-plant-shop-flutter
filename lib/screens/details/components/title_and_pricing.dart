@@ -15,7 +15,7 @@ class TitleAndPricing extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String priceText = PersianNumbers(price.toString()).replace();
+    String priceText = PersianNumbers(price).replace();
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
       child: Row(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:testapp/components/featured_plants.dart';
 import 'package:testapp/screens/details/details_screen.dart';
+import 'package:testapp/services/persian_numbers.dart';
 import 'package:testapp/services/plant.dart';
 import '../constants.dart';
 
@@ -70,6 +71,7 @@ class RecomendPlantCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    String priceText = PersianNumbers(price.toString()).replace();
     return Container(
       margin: EdgeInsets.only(
           right: kDefaultPadding,
@@ -111,7 +113,7 @@ class RecomendPlantCard extends StatelessWidget {
                   ),
                   Spacer(),
                   Text(
-                    "$price تومان",
+                    "$priceText تومان",
                     style: Theme.of(context)
                         .textTheme
                         .button

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:testapp/constants.dart';
+import 'package:testapp/services/persian_numbers.dart';
 
 class TitleAndPricing extends StatelessWidget {
   const TitleAndPricing({
@@ -14,6 +15,7 @@ class TitleAndPricing extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String priceText = PersianNumbers(price.toString()).replace();
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
       child: Row(
@@ -35,7 +37,7 @@ class TitleAndPricing extends StatelessWidget {
           ])),
           Spacer(),
           Text(
-            "$price تومان",
+            "$priceText تومان",
             style: Theme.of(context)
                 .textTheme
                 .headline5

@@ -32,7 +32,7 @@ class Body extends StatelessWidget {
             children: [
               SizedBox(
                 width: size.width / 2,
-                height: 84,
+                height: 50,
                 child: TextButton(
                   onPressed: () {},
                   child: Text(

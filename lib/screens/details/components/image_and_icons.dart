@@ -17,7 +17,7 @@ class ImageAndIcons extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: kDefaultPadding * 3),
       child: SizedBox(
-        height: size.height * 0.8,
+        height: size.height * 0.68,
         child: Row(
           children: [
             Expanded(
@@ -45,7 +45,7 @@ class ImageAndIcons extends StatelessWidget {
               ),
             )),
             Container(
-              height: size.height * 0.8,
+              height: size.height * 0.68,
               width: size.width * 0.75,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(
@@ -58,7 +58,7 @@ class ImageAndIcons extends StatelessWidget {
                         color: kPrimaryColor.withOpacity(0.29))
                   ],
                   image: DecorationImage(
-                      alignment: Alignment.centerLeft,
+                      alignment: Alignment.centerRight,
                       fit: BoxFit.cover,
                       image: AssetImage(image))),
             )

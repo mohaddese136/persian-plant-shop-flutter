@@ -37,10 +37,22 @@ class ImageAndIcons extends StatelessWidget {
                         }),
                   ),
                   Spacer(),
-                  IconCard(icon: "assets/icons/sun.svg"),
-                  IconCard(icon: "assets/icons/icon_2.svg"),
-                  IconCard(icon: "assets/icons/icon_3.svg"),
-                  IconCard(icon: "assets/icons/icon_4.svg"),
+                  IconCard(
+                    icon: "assets/icons/sun.svg",
+                    image: "assets/icons/check-mark.svg",
+                  ),
+                  IconCard(
+                    icon: "assets/icons/icon_2.svg",
+                    text: "۱۸°C",
+                  ),
+                  IconCard(
+                    icon: "assets/icons/icon_3.svg",
+                    text: "۵",
+                  ),
+                  IconCard(
+                    icon: "assets/icons/icon_4.svg",
+                    image: "assets/icons/cancel_mark.svg",
+                  ),
                 ],
               ),
             )),

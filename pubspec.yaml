@@ -24,6 +24,7 @@ dependencies:
   flutter:
     sdk: flutter
   intl: ^0.17.0
+  flip_card: ^0.5.0
 
   flutter_localizations:
     sdk: flutter
@@ -33,9 +34,16 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter_svg: ^0.21.0+1
 
+  moor: # use the latest version
+  sqlite3_flutter_libs: # Also use the latest version.
+  path_provider:
+  path:
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  moor_generator: # use the latest version
+  build_runner:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

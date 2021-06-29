@@ -28,6 +28,14 @@ class DataBase extends _$DataBase {
   // tell the database where to store the data with this constructor
   DataBase() : super(_openConnection());
 
+  // loads all palnts
+  Future<List<PlantData>> get allPlants => select(plant).get();
+
+  // returns the generated id
+  Future<int> addPlant(PlantData entry) {
+    return into(plant).insert(entry);
+  }
+
   @override
   int get schemaVersion => 1;
 }

@@ -35,16 +35,7 @@ class Body extends StatelessWidget {
                 width: size.width / 2,
                 height: 50,
                 child: TextButton(
-                  onPressed: () {
-                    DataBase()
-                        .addPlant(new PlantData(
-                            id: null,
-                            country: "ایران",
-                            price: 300000,
-                            title: "گل خوشگل",
-                            image: "assets/images/bottom_img_1.png"))
-                        .whenComplete(() => Navigator.of(context).pop());
-                  },
+                  onPressed: () {},
                   child: Text(
                     "خرید",
                     style: TextStyle(color: Colors.white),

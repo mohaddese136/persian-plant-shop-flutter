@@ -1,4 +1,5 @@
 import 'package:moor/ffi.dart';
+import 'package:flutter/foundation.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as p;
 import 'package:moor/moor.dart';
@@ -19,22 +20,34 @@ LazyDatabase _openConnection() {
   return LazyDatabase(() async {
     final dbFolder = await getApplicationDocumentsDirectory();
     final file = File(p.join(dbFolder.path, 'plant_shop.sqlite'));
+    print("-------- db locaaton is : -----------" + dbFolder.path);
     return VmDatabase(file);
   });
 }
 
 @UseMoor(tables: [Plant])
-class DataBase extends _$DataBase {
+class DataBase extends _$DataBase with ChangeNotifier {
   // tell the database where to store the data with this constructor
   DataBase() : super(_openConnection());
 
-  // loads all palnts
-  Future<List<PlantData>> get allPlants => select(plant).get();
+  // get all palnts
+  Future<List<PlantData>> getAllPlants() {
+    return select(plant).get();
+  }
+
+  // watch all palnts
+  Stream<List<PlantData>> watchAllPlants() {
+    return select(plant).watch();
+  }
 
   // returns the generated id
   Future<int> addPlant(PlantData entry) {
     return into(plant).insert(entry);
   }
+
+  Future updatePlant(PlantData entry) => update(plant).replace(entry);
+
+  Future deletePlant(PlantData entry) => delete(plant).delete(entry);
 
   @override
   int get schemaVersion => 1;

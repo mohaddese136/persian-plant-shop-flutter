@@ -1,55 +1,56 @@
 import 'package:flutter/material.dart';
+import 'package:path/path.dart';
 import 'package:testapp/components/featured_plants.dart';
 import 'package:testapp/screens/details/details_screen.dart';
 import 'package:testapp/services/persian_numbers.dart';
-import 'package:testapp/services/plant.dart';
+import 'package:testapp/data/database.dart';
+import 'package:testapp/services/plant.dart' as pClass;
 import '../constants.dart';
+import 'package:provider/provider.dart';
 
 class RecomendsPlants extends StatelessWidget {
-  const RecomendsPlants({
+  DataBase provider;
+  final pClass.Plant plant;
+  RecomendsPlants({
     Key key,
+    this.plant,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    List<Plant> plants = [
-      Plant(
-          title: "بنیسا",
-          country: "روسیه",
-          price: 300000,
-          image: "assets/images/image_1.png"),
-      Plant(
-          title: "سمنتا",
-          country: "ایران",
-          price: 500000,
-          image: "assets/images/image_2.png"),
-      Plant(
-          title: "روزا",
-          country: "هلند",
-          price: 900000,
-          image: "assets/images/image_3.png")
-    ];
-    return SizedBox(
-      height: 318,
-      child: ListView.builder(
-          shrinkWrap: true,
-          scrollDirection: Axis.horizontal,
-          itemCount: plants.length,
-          itemBuilder: (context, index) {
-            return RecomendPlantCard(
-                image: plants[index].image,
-                title: plants[index].title,
-                country: plants[index].country,
-                price: plants[index].price,
-                press: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => DetailsScreen(
-                                plant: plants[index],
-                              )));
-                });
-          }),
+    // add a plan to database
+    DataBase()
+        .addPlant(new PlantData(
+            id: null,
+            country: "ایران",
+            price: 300000,
+            title: "بونسای",
+            image: "assets/images/image_1.png"))
+        .whenComplete(() => Navigator.of(context).pop());
+    final database = Provider.of<DataBase>(context);
+
+    return StreamBuilder(
+      stream: database.watchAllPlants(),
+      builder: (context, AsyncSnapshot<List<PlantData>> snapshot) {
+        final plants = snapshot.data ?? List();
+
+        return SizedBox(
+          height: 318,
+          child: ListView.builder(
+            shrinkWrap: true,
+            scrollDirection: Axis.horizontal,
+            itemCount: plants.length,
+            itemBuilder: (context, index) {
+              return RecomendPlantCard(
+                  image: plants[index].image,
+                  title: plants[index].title,
+                  country: plants[index].country,
+                  price: plants[index].price,
+                  press: () {});
+            },
+          ),
+        );
+      },
     );
   }
 }

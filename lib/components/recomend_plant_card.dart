@@ -18,15 +18,6 @@ class RecomendsPlants extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // add a plan to database
-    DataBase()
-        .addPlant(new PlantData(
-            id: null,
-            country: "ایران",
-            price: 300000,
-            title: "بونسای",
-            image: "assets/images/image_1.png"))
-        .whenComplete(() => Navigator.of(context).pop());
     final database = Provider.of<DataBase>(context);
 
     return StreamBuilder(
